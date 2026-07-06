@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHIKKI FOOD | Доставка сочной курочки и напитков</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff471a;
+            --primary-hover: #e0360d;
+            --dark: #121824;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --accent: #22c55e;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .header-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .header-logo span {
+            color: var(--primary);
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1.1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+                margin: 20px auto;
+            }
+        }
+
+        .products-section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(255, 71, 26, 0.3);
+        }
+
+        .product-img-wrapper {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            background-color: #f1f5f9;
+            position: relative;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.08);
+        }
+
+        .product-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid #f1f5f9;
+            margin-top: 15px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .btn-add {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(255, 71, 26, 0.3);
+        }
+
+        .btn-add:hover {
+            background-color: var(--primary-hover);
+            transform: scale(1.1);
+        }
+
+        .cart-section {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+        }
+
+        .cart-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-count-badge {
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .cart-items-list {
+            max-height: 240px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 5px;
+        }
+
+        .cart-items-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .cart-items-list::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #f1f5f9;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+            padding-right: 15px;
+        }
+
+        .cart-item-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .cart-item-price {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #f1f5f9;
+            padding: 6px 12px;
+            border-radius: 30px;
+        }
+
+        .btn-qty {
+            border: none;
+            background: none;
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--text-main);
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .btn-qty:hover {
+            color: var(--primary);
+        }
+
+        .cart-item-qty {
+            font-weight: 700;
+            font-size: 0.95rem;
+            min-width: 15px;
+            text-align: center;
+        }
+
+        .total-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 20px 0;
+            padding: 15px 0;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .total-amount {
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--dark);
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 71, 26, 0.1);
+        }
+
+        .card-info-container {
+            background-color: #f0fdf4;
+            border: 2px dashed var(--accent);
+            border-radius: var(--radius-md);
+            padding: 15px;
+            margin-bottom: 16px;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .card-title-box {
+            font-weight: bold;
+            color: #166534;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-number {
+            font-family: monospace;
+            font-size: 1.15rem;
+            background: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #bbf7d0;
+            display: inline-block;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .card-holder {
+            font-size: 0.85rem;
+            color: #166534;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 1.5px dashed #cbd5e1;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--text-main);
+            transition: all 0.2s;
+        }
+
+        .file-upload-label:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: #f8fafc;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-submit {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #1baf52;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(34, 197, 94, 0.4);
+        }
+
+        .btn-submit:disabled {
+            background-color: #cbd5e1;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background-color: #f1f5f9;
+            margin-top: 60px;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-logo"><i class="fa-solid fa-fire"></i> CHIKKI <span>FOOD</span></div>
+    <div class="header-subtitle">Быстрая доставка хрустящей курочки и охлаждающих напитков</div>
+</header>
+
+<div class="container">
+    <main>
+        <h2 class="products-section-title"><i class="fa-solid fa-utensils" style="color: var(--primary);"></i> Наше Меню</h2>
+        <div class="products-grid" id="products-container"></div>
+    </main>
+
+    <aside class="cart-section">
+        <div class="cart-title">
+            <span><i class="fa-solid fa-cart-shopping" style="color: var(--primary);"></i> Корзина</span>
+            <span class="cart-count-badge" id="cart-count">0</span>
+        </div>
+        
+        <div class="cart-items-list" id="cart-items">
+            <p style="color: var(--text-muted); text-align: center; padding: 30px 0;">Корзина пока пуста</p>
+        </div>
+
+        <div class="total-container">
+            <span>Итого:</span>
+            <span class="total-amount"><span id="total-amount">0</span> сум</span>
+        </div>
+
+        <form id="order-form" onsubmit="placeOrder(event)">
+            <div class="form-group">
+                <label for="fio">Ф.И.О. Покупателя *</label>
+                <input type="text" id="fio" class="form-control" required placeholder="Введите ваше имя">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Номер телефона *</label>
+                <input type="tel" id="phone" class="form-control" required placeholder="+998 (__) ___-__-__">
+            </div>
+
+            <div class="form-group">
+                <label for="payment">Способ оплаты *</label>
+                <select id="payment" class="form-control" required onchange="checkPaymentMethod()">
+                    <option value="card">Оплата картой (Uzcard / Humo)</option>
+                    <option value="cash">Наличными при получении</option>
+                </select>
+            </div>
+
+            <div id="card-payment-details" class="card-info-container">
+                <div class="card-title-box"><i class="fa-solid fa-credit-card"></i> Реквизиты для перевода:</div>
+                <div class="card-number">9860 0201 3160 5287</div>
+                <div class="card-holder">Получатель: Kasimov.B</div>
+                
+                <label class="form-group" style="margin-bottom:0; display:block;">
+                    <span style="font-size:0.8rem; color:#166534; font-weight:700; display:block; margin-bottom:5px;">Загрузите чек / скриншот пополнения *</span>
+                    <label for="screenshot-file" class="file-upload-label" id="file-label-text">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Выбрать скриншот оплаты
+                    </label>
+                    <input type="file" id="screenshot-file" accept="image/*" required style="display:none;" onchange="updateFileName()">
+                </label>
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn-submit">
+                <i class="fa-solid fa-circle-check"></i> Заказать
+            </button>
+        </form>
+    </aside>
+</div>
+
+<footer>
+    <p>© 2026 CHIKKI FOOD. Все права защищены.</p>
+</footer>
+
+<script>
+    const TELEGRAM_TOKEN = "8926130473:AAFuS3yQQK1Fh2o4fOOUtrG_hZbuNEHHpxE"; 
+    const TELEGRAM_CHAT_ID = "6277740056";
+
+    const products = [
+        { id: 1, name: "Чикен Филе", price: 75000, category: "курочка", image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=500&auto=format&fit=crop&q=60" },
+        { id: 2, name: "Чикен Крылышки", price: 75000, category: "курочка", image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=500&auto=format&fit=crop&q=60" },
+        { id: 3, name: "КФС", price: 65000, category: "курочка", image: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=500&auto=format&fit=crop&q=60" },
+        { id: 4, name: "Табака", price: 65000, category: "курочка", image: "https://images.gastronom.ru/BZLA8UZHd-cygk8idOClwIgztHCC9NGDkEwpaCg51rI/pr:article-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2U3MmU4YTUwLTljYTEtNGJhNC05MTBmLTFkZTJiYjgxZGJmNy5qcGc.webp" },
+        { id: 5, name: "Окорочка", price: 65000, category: "курочка", image: "https://i.ytimg.com/vi/nIl643KF7Os/maxresdefault.jpg" },
+        { id: 6, name: "Кока-Кола 1 л", price: 12000, category: "напитки", image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=60" },
+        { id: 7, name: "Кока-Кола 0.5 л", price: 8000, category: "напитки", image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=500&auto=format&fit=crop&q=60" },
+        { id: 10, name: "Пепси 1 л", price: 12000, category: "напитки", image: "https://images.unsplash.com/photo-1546695259-ad30ff3fd643?w=500&auto=format&fit=crop&q=60" },
+        { id: 11, name: "Пепси 0.5 л", price: 8000, category: "напитки", image: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=500&auto=format&fit=crop&q=60" }
+    ];    let cart = {};
+
+    const container = document.getElementById('products-container');
+    products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = `product-card`;
+        card.innerHTML = `
+            <div class="product-img-wrapper">
+                <img src="${product.image}" alt="${product.name}" class="product-img" loading="lazy">
+            </div>
+            <div class="product-content">
+                <div>
+                    <div class="product-category">${product.category}</div>
+                    <div class="product-name">${product.name}</div>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price">${product.price.toLocaleString('ru-RU')} сум</div>
+                    <button class="btn-add" onclick="addToCart(${product.id})">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+
+    function checkPaymentMethod() {
+        const method = document.getElementById('payment').value;
+        const detailsBox = document.getElementById('card-payment-details');
+        const fileInput = document.getElementById('screenshot-file');
+
+        if(method === 'card') {
+            detailsBox.style.display = 'block';
+            fileInput.required = true;
+        } else {
+            detailsBox.style.display = 'none';
+            fileInput.required = false;
+        }
+    }
+
+    function updateFileName() {
+        const fileInput = document.getElementById('screenshot-file');
+        const labelText = document.getElementById('file-label-text');
+        if(fileInput.files.length > 0) {
+            labelText.innerHTML = `<i class="fa-solid fa-file-image" style="color:var(--accent);"></i> ${fileInput.files[0].name.substring(0, 25)}...`;
+        } else {
+            labelText.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Выбрать скриншот оплаты`;
+        }
+    }
+
+    function addToCart(id) {
+        if (cart[id]) {
+            cart[id].count++;
+        } else {
+            const product = products.find(p => p.id === id);
+            cart[id] = { ...product, count: 1 };
+        }
+        updateCart();
+    }
+
+    function changeCount(id, delta) {
+        if (cart[id]) {
+            cart[id].count += delta;
+            if (cart[id].count <= 0) {
+                delete cart[id];
+            }
+            updateCart();
+        }
+    }
+
+    function updateCart() {
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalAmountSpan = document.getElementById('total-amount');
+        const cartCountSpan = document.getElementById('cart-count');
+        
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+        let totalItems = 0;
+
+        Object.values(cart).forEach(item => {
+            total += item.price * item.count;
+            totalItems += item.count;
+
+            const itemEl = document.createElement('div');
+            itemEl.className = 'cart-item';
+            itemEl.innerHTML = `
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">${(item.price * item.count).toLocaleString('ru-RU')} сум</div>
+                </div>
+                <div class="cart-item-controls">
+                    <button class="btn-qty" onclick="changeCount(${item.id}, -1)">-</button>
+                    <span class="cart-item-qty">${item.count}</span>
+                    <button class="btn-qty" onclick="changeCount(${item.id}, 1)">+</button>
+                </div>
+            `;
+            cartItemsContainer.appendChild(itemEl);
+        });
+
+        if (totalItems === 0) {
+            cartItemsContainer.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 30px 0;">Корзина пока пуста</p>';
+        }
+
+        totalAmountSpan.innerText = total.toLocaleString('ru-RU');
+        cartCountSpan.innerText = totalItems;
+    }
+
+    function placeOrder(event) {
+        event.preventDefault();
+
+        if (Object.keys(cart).length === 0) {
+            alert('Ваша корзина пуста!');
+            return;
+        }
+
+        const btn = document.getElementById('submit-btn');
+        btn.disabled = true;
+        btn.innerText = "Отправка...";
+
+        const fio = document.getElementById('fio').value;
+        const phone = document.getElementById('phone').value;
+        const paymentMethod = document.getElementById('payment').value;
+        const paymentText = paymentMethod === 'card' ? '💳 Картой (Чек прикреплен)' : '💵 Наличными';
+        
+        let message = `🔔 <b>НОВЫЙ ЗАКАЗ [CHIKKI FOOD]</b>\n\n`;
+        message += `👤 <b>Покупатель:</b> ${fio}\n`;
+        message += `📞 <b>Телефон:</b> ${phone}\n`;
+        message += `💰 <b>Оплата:</b> ${paymentText}\n\n`;
+        message += `📦 <b>Товары:</b>\n`;
+        
+        Object.values(cart).forEach(item => {
+            message += `▪️ ${item.name} — ${item.count} шт. (${(item.price * item.count).toLocaleString('ru-RU')} сум)\n`;
+        });
+        
+        message += `\n💵 <b>Итого к оплате:</b> ${document.getElementById('total-amount').innerText} сум`;
+
+        const fileInput = document.getElementById('screenshot-file');
+        
+        if (paymentMethod === 'card' && fileInput.files.length > 0) {
+            const formData = new FormData();
+            formData.append('chat_id', TELEGRAM_CHAT_ID);
+            formData.append('photo', fileInput.files[0]);
+            formData.append('caption', message);
+            formData.append('parse_mode', 'HTML');
+
+            fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => handleResponse(res))
+            .catch(err => alert('Ошибка сети при отправке скриншота.'))
+            .finally(() => resetBtn(btn));
+        } else {
+            fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            })
+            .then(res => handleResponse(res))
+            .catch(err => alert('Ошибка сети.'))
+            .finally(() => resetBtn(btn));
+        }
+    }
+
+    function handleResponse(response) {
+        if(response.ok) {
+            alert('🎉 Заказ успешно оформлен! Чек и данные заказа отправлены администратору.');
+            cart = {};
+            updateCart();
+            document.getElementById('order-form').reset();
+            document.getElementById('file-label-text').innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Выбрать скриншот оплаты`;
+            checkPaymentMethod();
+        } else {
+            alert('Ошибка при отправке в Telegram. Пожалуйста, проверьте настройки бота.');
+        }
+    }
+
+    function resetBtn(btn) {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fa-solid fa-circle-check"></i> Заказать`;
+    }
+
+    checkPaymentMethod();
+</script>
+</body>
+</html>
